@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Something for You ❤️</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- FLOATING HEARTS (FIXED: pointer-events disabled) -->
+  <div class="hearts" style="pointer-events: none;"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="gif hero-gif"
+      src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" />
+
+    <h1>Okay… so listen 🫣❤️</h1>
+    <p>
+      I tried to say this in words…  
+      but then I thought —  
+      why not make a whole website 😌
+    </p>
+
+    <span class="scroll-hint">Scroll carefully ↓</span>
+  </section>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="story-card glass tilt">
+      <img class="gif small"
+        src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" />
+
+      <h2 id="story-title">So It All Started Like This…</h2>
+      <p id="story-text">
+        We met at the Arjun Kanungo concert, you were not even that I was there to meet you, but I am glad that I went, you have a charm about you that I haven't seen in anyone else. 💕
+      </p>
+
+      <button id="nextStoryBtn" class="primary-btn">
+        Next 👉
+      </button>
+    </div>
+  </section>
+
+  <!-- PROPOSAL -->
+  <section class="proposal">
+    <img
+      id="reactionGif"
+      class="gif"
+      src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
+    />
+
+    <audio id="sadSound">
+      <source src="assets/sad.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- REQUIRED ID -->
+    <h1 id="question">So… Will you be my Valentine 😳💖</h1>
+
+    <div class="buttons">
+      <button id="yesBtn" class="yes-btn">YES 💘</button>
+      <button id="noBtn" class="no-btn">NO 🙈</button>
+    </div>
+
+    <p id="reactionText"></p>
+  </section>
+
+  <script src="js/story.js"></script>
+  <script src="js/proposal.js"></script>
+</body>
+</html>
