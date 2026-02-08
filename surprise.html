@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/surprise.css" />
 
   <style>
-    /* Tap to start overlay */
+    /* TAP TO START OVERLAY */
     #startOverlay {
       position: fixed;
       inset: 0;
@@ -45,23 +45,27 @@
     .hidden {
       display: none;
     }
+
+    /* 🔥 CRITICAL MOBILE FIX */
+    canvas#confetti {
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
 
-  <!-- TAP TO START (MOBILE AUDIO UNLOCK) -->
+  <!-- TAP TO START -->
   <div id="startOverlay">
     <h1>Tap to start the magic 💖</h1>
     <p>(I saved something special for you 🥹)</p>
   </div>
 
-  <!-- Confetti Canvas -->
+  <!-- Confetti -->
   <canvas id="confetti"></canvas>
 
-  <!-- Content -->
+  <!-- CONTENT -->
   <div class="surprise-container hidden" id="content">
 
-    <!-- Celebration GIF -->
     <img class="celebrate-gif"
       src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NnJtaG10b3o5NXp3MmY0aTRpN3VzdzBuNmgydHVkaXpqamJvZHNoMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11PGipRFR3ePXa/giphy.gif" />
 
@@ -72,27 +76,24 @@
       I’m officially the luckiest person alive.
     </p>
 
-    <!-- Photo Polaroids -->
     <div class="polaroids">
-      <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZTRjajljN3JscWVuajVqeTQ2YzV0bmZ5bG9vcHpmbGwyc2s0M3N4MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9vYjpFsuSre24/giphy.gif" />
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2l5ZGY2aXcxaHE5enRiMWxhMzV0cG1vNXdtazEzYWhxYjZ5ancwNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PGp3hlI74uVxK/giphy.gif" />
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNndvOHd3ZnMxajhvMWs0YjF4bHp2dXEyc3dweGp3YnVobHR4bHZ4aSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/THPCrNDj3KeZJPGOYp/giphy.gif" />
+      <img src="https://media.giphy.com/media/9vYjpFsuSre24/giphy.gif" />
+      <img src="https://media.giphy.com/media/PGp3hlI74uVxK/giphy.gif" />
+      <img src="https://media.giphy.com/media/THPCrNDj3KeZJPGOYp/giphy.gif" />
     </div>
 
-    <!-- Cute Message -->
     <p class="final-text">
       This is just the beginning…  
       And I can’t wait to make  
       a million more memories with you 💖
     </p>
 
-    <!-- Another Cute GIF -->
     <img class="celebrate-gif small"
       src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" />
 
   </div>
 
-  <!-- Music (MOBILE SAFE) -->
+  <!-- MUSIC -->
   <audio id="loveSong" loop preload="auto" playsinline>
     <source src="assets/valentine.m4a" type="audio/mpeg" />
   </audio>
@@ -104,14 +105,16 @@
     const content = document.getElementById("content");
     const loveSong = document.getElementById("loveSong");
 
-    overlay.addEventListener("click", () => {
+    function startExperience() {
       loveSong.play().then(() => {
         overlay.classList.add("fade-out");
         content.classList.remove("hidden");
-      }).catch(() => {
-        alert("Tap once more 💖");
-      });
-    });
+      }).catch(() => {});
+    }
+
+    /* 🔥 MOBILE + DESKTOP SAFE */
+    overlay.addEventListener("click", startExperience);
+    overlay.addEventListener("touchstart", startExperience, { passive: true });
   </script>
 
 </body>
