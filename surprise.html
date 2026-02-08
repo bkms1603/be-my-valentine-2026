@@ -4,14 +4,62 @@
   <meta charset="UTF-8" />
   <title>You Said YES 💖</title>
   <link rel="stylesheet" href="css/surprise.css" />
+
+  <style>
+    /* Tap to start overlay */
+    #startOverlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff6fae, #ff9ecf);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #startOverlay h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    #startOverlay p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.8s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- TAP TO START (MOBILE AUDIO UNLOCK) -->
+  <div id="startOverlay">
+    <h1>Tap to start the magic 💖</h1>
+    <p>(I saved something special for you 🥹)</p>
+  </div>
 
   <!-- Confetti Canvas -->
   <canvas id="confetti"></canvas>
 
   <!-- Content -->
-  <div class="surprise-container">
+  <div class="surprise-container hidden" id="content">
 
     <!-- Celebration GIF -->
     <img class="celebrate-gif"
@@ -44,11 +92,27 @@
 
   </div>
 
-  <!-- Music -->
-  <audio autoplay loop>
+  <!-- Music (MOBILE SAFE) -->
+  <audio id="loveSong" loop preload="auto" playsinline>
     <source src="assets/valentine.m4a" type="audio/mpeg" />
   </audio>
 
   <script src="js/confetti.js"></script>
+
+  <script>
+    const overlay = document.getElementById("startOverlay");
+    const content = document.getElementById("content");
+    const loveSong = document.getElementById("loveSong");
+
+    overlay.addEventListener("click", () => {
+      loveSong.play().then(() => {
+        overlay.classList.add("fade-out");
+        content.classList.remove("hidden");
+      }).catch(() => {
+        alert("Tap once more 💖");
+      });
+    });
+  </script>
+
 </body>
 </html>
